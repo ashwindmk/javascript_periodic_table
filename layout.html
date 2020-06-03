@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="body-wrapper">
+      <main>
+          <section id="element-details-container">
+              <div id="element-details-title-bar">
+                <div id="element-details-title"></div>
+                <!-- <div id="element-details-close">&#10005;</div> -->
+                <div id="element-details-close">&#10006;</div>
+              </div>
+
+              <div id="element-details-wrapper"></div>
+          </section>
+
+          <div id="periodic-table">
+              <div class="element" id="lanth-group" name="lanthanide" data-pos="57-71">
+                <div class="number">57-71</div>
+                <div class="el-group">Lanthanide Group</div>
+              </div>
+
+              <div class="element" id="actinid-group" name="actinid" data-pos="89-103">
+                <div class="number">89-103</div>
+                <div class="el-group">Actinide Group</div>
+              </div>
+          </div>
+
+          <section id="element-types-wrapper">
+              <div class="element-type" id="alkali_metal" data-pos="0"><span>Alkali Metals</span></div>
+              <div class="element-type" id="alkaline_earth_metal" data-pos="1"><span>Alkaline Earth Metals</span></div>
+              <div class="element-type" id="transition_metal" data-pos="2"><span>Transition Metals</span></div>
+              <div class="element-type" id="post-transition_metal" data-pos="3" title="a.k.a poor metals"><span>Post Transition Metals</span></div>
+              <div class="element-type" id="other-non-metals" data-pos="4"><span>Other Nonmetals</span></div>
+              <div class="element-type" id="metalloid" data-pos="5"><span>Metalloids</span></div>
+              <div class="element-type" id="halogen" data-pos="6"><span>Halogens</span></div>
+              <div class="element-type" id="noble_gas" data-pos="7"><span>Noble Gases</span></div>
+
+              <div class="element-type" id="lanthanide" data-pos="8"><span>Lanthanides</span></div>
+              <div class="element-type" id="actinide" data-pos="9"><span>Actinides</span></div>
+          </section>
+      </main>
+
+      <bottom-footer></bottom-footer>
+    </div>
+    
+    <script src="elements.js"></script>
+</body>
+</html>

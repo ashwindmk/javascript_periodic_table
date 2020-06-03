@@ -1,0 +1,1083 @@
+:root {
+  --body-bg-color: white;
+
+  --alkali-bg-color: rgb(50, 70, 80);
+  --alkali-color: white;
+
+  --alkaline-earth-bg-color: rgb(86, 96, 116);
+  --alkaline-earth-color: white;
+
+  --transition-bg-color: rgb(100, 120, 130);
+  --transition-color: white;
+
+  --post-transition-bg-color: rgb(119, 119, 119);
+  --post-transition-color: white;
+
+  --metalloids-bg-color: rgb(85, 85, 85);
+  --metalloids-color: white;
+
+  --nonmetals-bg-color: rgb(64, 64, 90);
+  --nonmetals-color: white;
+
+  --halogens-bg-color: rgb(77, 93, 83);
+  --halogens-color: white;
+
+  --noble-gases-bg-color: rgb(42, 75, 75);
+  --noble-gases-color: white;
+
+  --actinids-bg-color: rgb(70, 60, 50);
+  --actinids-color: white;
+
+  --lanthanids-bg-color: rgb(50, 70, 50);
+  --lanthanids-color: white;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+main {
+    overflow-x: scroll;
+}
+
+/* iframe */
+#element-details-container {
+    position: fixed;
+    top: 10%;
+    /* top: 10vh; */
+    bottom: 10vh;
+    left: 10vw;
+    width: 80vw;
+    height: 65%;
+    margin: 0 auto;
+    visibility: hidden;
+    box-shadow: 30px 40px 40px rgba(0, 0, 0, 0.1), -30px 0 40px rgba(0, 0, 0, 0.1);
+    z-index: var(--element-details-z-index);
+}
+
+@keyframes expand {
+    50% {
+      visibility: visible;
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+    100% {
+      visibility: visible;
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+}
+
+.showIframe {
+    -webkit-animation: expand .5s ease-in-out forwards;
+    animation: expand .5s ease-in-out forwards;
+    visibility: visible;
+}
+
+#element-details-wrapper {
+    width: 100%;
+    /* height: 70vh; */
+    height: 100%;
+    background: var(--body-bg-color);
+    margin: auto;
+    overflow-y: auto;
+}
+
+#element-details-title-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 3px 10px;
+    background-color: #666;
+}
+
+#element-details-title {
+    color: white;
+    font-weight: bold;
+}
+
+#element-details-close {
+    line-height: initial;
+    font-size: 1.4rem;
+    color: #EEE;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px;
+    margin-top: -4px;
+    /* float: right; */
+}
+  
+#element-details-close:active {
+    color: white;
+}
+
+.element-details {
+    background: inherit;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    font-size: small;
+}
+
+.element-details table {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.element-details td {
+  text-align: start;
+  vertical-align: top;
+}
+
+td.key {
+  white-space: nowrap;
+  font-weight: 900;
+}
+
+.element-block {
+    width: 125px;
+    padding: .5rem .5rem 1.3rem;
+    margin: 20px 0;
+    border: 1px solid black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.element-type-props {
+    margin: 0;
+    padding: 0;
+}
+
+.element-type-props li {
+    list-style: none;
+    margin-top: 1.5em;
+}
+
+.element-summary-list {
+    margin: 8px 0;
+    padding: 0 1.1em;
+    list-style-type: none;
+    text-align: left;
+}
+
+/* Element types */
+#element-types-wrapper {
+    display: flex;
+    flex: 0 0 0px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.element-type {
+    display: flex;
+    width: fit-content;
+    flex-shrink: 0;
+    padding: 5px 12px;
+    margin: 10px 8px;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+#periodic-table {
+    line-height: initial;
+    height: fit-content;
+    display: inline-grid;
+    grid-auto-rows: 1fr;
+    grid-template-areas: "H . . . . . . . . . . . . . . . . He"
+        "Li Be . . . . . . . . . . B C N O F Ne"
+        "Na Mg . . . . . . . . . . Al Si P S Cl Ar"
+        "K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr"
+        "Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe"
+        "Cs Ba lg Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn"
+        "Fr Ra ac Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og"
+        "Uue Ubn . . . . . . . . . . . . . . . ."
+        ". . La Ce Pr Nd Pm Sm Eu Gd Tb Dy Ho Er Tm Yb Lu ."
+        ". . Ac Th Pa U Np Pu Am Cm Bk Cf Es Fm Md No Lr .";
+    padding: 1.5rem 0.75rem;
+}
+
+/* Alkali */
+#Li, #Na, #K, #Rb, #Cs, #Fr, #Uue,
+#alkali_metal {
+    background-color: var(--alkali-bg-color); /* rgba(100, 100, 100, 0.5);*/
+    color: var(--alkali-color);
+}
+
+/* Earth Metals */
+#Be, #Mg, #Ca, #Sr, #Ba, #Ra, #Ubn,
+#alkaline_earth_metal {
+    background-color: var(--alkaline-earth-bg-color);
+    color: var(--alkaline-earth-color);
+}
+
+/* Transition Metals */
+#Sc, #Ti, #V, #Cr, #Mn, #Fe, #Co, #Ni,
+#Cu, #Zn, #Y, #Zr, #Nb, #Mo, #Tc, #Ru,
+#Rh, #Pd, #Ag, #Cd, #Hf, #Ta, #W, #Re,
+#Os, #Ir, #Pt, #Au, #Hg, #Rf, #Db, #Sg,
+#Bh, #Hs, #Mt, #Ds, #Rg, #Cn,
+#transition_metal {
+    background-color: var(--transition-bg-color);
+    color: var(--transition-color);
+}
+
+/* Post transition Metals */
+#Al, #Ga, #In, #Sn, #Tl, #Pb, #Bi, #Nh, #Fl, #Mc, #Lv,
+#post-transition_metal {
+  background-color: var(--post-transition-bg-color);
+  color: var(--post-transition-color);
+}
+
+/* Lanthanides */
+#La, #Ce, #Pr, #Nd, #Pm, #Sm, #Eu, #Gd,
+#Tb, #Dy, #Ho, #Er, #Tm, #Yb, #Lu,
+#lanthanide,
+#lanth-group {
+  background-color: var(--lanthanids-bg-color);
+  color: var(--lanthanids-color);
+}
+
+#lanth-group {
+    -ms-grid-row: 7;
+    -ms-grid-column: 3;
+    grid-area: lg;
+    text-align: center;
+    /* padding-top: 1rem; */
+}
+
+/* Actinides */
+#Ac, #Th, #Pa, #U, #Np, #Pu, #Am, #Cm,
+#Bk, #Cf, #Es, #Fm, #Md, #No, #Lr,
+#actinide, #actinid-group {
+  background-color: var(--actinids-bg-color);
+  color: var(--actinids-color);
+}
+
+#actinid-group {
+    -ms-grid-row: 6;
+    -ms-grid-column: 3;
+    grid-area: ac;
+    text-align: center;
+    /* padding-top: 1rem; */
+}
+
+.el-group {
+  margin-top: 0.5rem;
+}
+  
+.el-group a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Other Nonmetals */
+#H, #C, #N, #O, #P, #S, #Se,
+#other-non-metals {
+    background-color: var(--nonmetals-bg-color);
+    color: var(--nonmetals-color);
+}
+
+/* Metalloids */
+#B, #Si, #Ge, #As, #Sb, #Te, #Po,
+#metalloid {
+    background-color: var(--metalloids-bg-color);
+    color: var(--metalloids-color);
+}
+
+/* Halogens */
+#F, #Cl, #Br, #I, #At, #Ts,
+#halogen {
+    background-color: var(--halogens-bg-color);
+    color: var(--halogens-color);
+}
+
+/* Noble Gases */
+#He, #Ne, #Ar, #Kr, #Xe, #Rn, #Og,
+#noble_gas {
+    background-color: var(--noble-gases-bg-color);
+    color: var(--noble-gases-color);
+}
+
+/* #Nh, #Mc, #Ts, #Og, #Uue {
+    background-color: #FFF;
+    color: black;
+} */
+
+.element {
+    display: flex;
+    flex-direction: column;
+    /* -webkit-box-orient: vertical; */
+    align-items: center;
+    justify-items: center;
+    justify-content: start;
+    width: 70px;
+    /* height: fit-content;
+    height: auto; */
+    padding: 5px;
+    padding-bottom: 10px;
+    margin: .2rem;
+    cursor: pointer;
+}
+
+.number {
+    justify-self: start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    font-size: .7em;
+    font-weight: 300;
+}
+
+.symbol {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: .1rem;
+}
+
+.name {
+    font-size: .7em;
+    font-weight: 300;
+    text-transform: capitalize;
+    margin-bottom: .1rem;
+}
+
+.atomic-mass {
+    font-size: .6em;
+}
+
+/* Elements */
+#H {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: H;
+}
+
+#He {
+    -ms-grid-row: 1;
+    -ms-grid-column: 18;
+    grid-area: He;
+}
+
+#Li {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: Li;
+}
+
+#Be {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: Be;
+}
+
+#B {
+    -ms-grid-row: 2;
+    -ms-grid-column: 13;
+    grid-area: B;
+}
+
+#C {
+    -ms-grid-row: 2;
+    -ms-grid-column: 14;
+    grid-area: C;
+}
+
+#N {
+    -ms-grid-row: 2;
+    -ms-grid-column: 15;
+    grid-area: N;
+}
+
+#O {
+    -ms-grid-row: 2;
+    -ms-grid-column: 16;
+    grid-area: O;
+}
+  
+#F {
+    -ms-grid-row: 2;
+    -ms-grid-column: 17;
+    grid-area: F;
+}
+  
+#Ne {
+    -ms-grid-row: 2;
+    -ms-grid-column: 18;
+    grid-area: Ne;
+}
+  
+  #Na {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: Na;
+  }
+  
+  #Mg {
+    -ms-grid-row: 3;
+    -ms-grid-column: 2;
+    grid-area: Mg;
+  }
+  
+  #Al {
+    -ms-grid-row: 3;
+    -ms-grid-column: 13;
+    grid-area: Al;
+  }
+  
+  #Si {
+    -ms-grid-row: 3;
+    -ms-grid-column: 14;
+    grid-area: Si;
+  }
+  
+  #P {
+    -ms-grid-row: 3;
+    -ms-grid-column: 15;
+    grid-area: P;
+  }
+  
+  #S {
+    -ms-grid-row: 3;
+    -ms-grid-column: 16;
+    grid-area: S;
+  }
+  
+  #Cl {
+    -ms-grid-row: 3;
+    -ms-grid-column: 17;
+    grid-area: Cl;
+  }
+  
+  #Ar {
+    -ms-grid-row: 3;
+    -ms-grid-column: 18;
+    grid-area: Ar;
+  }
+  
+  #K {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    grid-area: K;
+  }
+  
+  #Ca {
+    -ms-grid-row: 4;
+    -ms-grid-column: 2;
+    grid-area: Ca;
+  }
+  
+  #Sc {
+    -ms-grid-row: 4;
+    -ms-grid-column: 3;
+    grid-area: Sc;
+  }
+  
+  #Ti {
+    -ms-grid-row: 4;
+    -ms-grid-column: 4;
+    grid-area: Ti;
+  }
+  
+  #V {
+    -ms-grid-row: 4;
+    -ms-grid-column: 5;
+    grid-area: V;
+  }
+  
+  #Cr {
+    -ms-grid-row: 4;
+    -ms-grid-column: 6;
+    grid-area: Cr;
+  }
+  
+  #Mn {
+    -ms-grid-row: 4;
+    -ms-grid-column: 7;
+    grid-area: Mn;
+  }
+  
+  #Fe {
+    -ms-grid-row: 4;
+    -ms-grid-column: 8;
+    grid-area: Fe;
+  }
+  
+  #Co {
+    -ms-grid-row: 4;
+    -ms-grid-column: 9;
+    grid-area: Co;
+  }
+  
+  #Ni {
+    -ms-grid-row: 4;
+    -ms-grid-column: 10;
+    grid-area: Ni;
+  }
+  
+  #Cu {
+    -ms-grid-row: 4;
+    -ms-grid-column: 11;
+    grid-area: Cu;
+  }
+  
+  #Zn {
+    -ms-grid-row: 4;
+    -ms-grid-column: 12;
+    grid-area: Zn;
+  }
+  
+  #Ga {
+    -ms-grid-row: 4;
+    -ms-grid-column: 13;
+    grid-area: Ga;
+  }
+  
+  #Ge {
+    -ms-grid-row: 4;
+    -ms-grid-column: 14;
+    grid-area: Ge;
+  }
+  
+  #As {
+    -ms-grid-row: 4;
+    -ms-grid-column: 15;
+    grid-area: As;
+  }
+  
+  #Se {
+    -ms-grid-row: 4;
+    -ms-grid-column: 16;
+    grid-area: Se;
+  }
+  
+  #Br {
+    -ms-grid-row: 4;
+    -ms-grid-column: 17;
+    grid-area: Br;
+  }
+  
+  #Kr {
+    -ms-grid-row: 4;
+    -ms-grid-column: 18;
+    grid-area: Kr;
+  }
+  
+  #Rb {
+    -ms-grid-row: 5;
+    -ms-grid-column: 1;
+    grid-area: Rb;
+  }
+  
+  #Sr {
+    -ms-grid-row: 5;
+    -ms-grid-column: 2;
+    grid-area: Sr;
+  }
+  
+  #Y {
+    -ms-grid-row: 5;
+    -ms-grid-column: 3;
+    grid-area: Y;
+  }
+  
+  #Zr {
+    -ms-grid-row: 5;
+    -ms-grid-column: 4;
+    grid-area: Zr;
+  }
+  
+  #Nb {
+    -ms-grid-row: 5;
+    -ms-grid-column: 5;
+    grid-area: Nb;
+  }
+  
+  #Mo {
+    -ms-grid-row: 5;
+    -ms-grid-column: 6;
+    grid-area: Mo;
+  }
+  
+  #Tc {
+    -ms-grid-row: 5;
+    -ms-grid-column: 7;
+    grid-area: Tc;
+  }
+  
+  #Ru {
+    -ms-grid-row: 5;
+    -ms-grid-column: 8;
+    grid-area: Ru;
+  }
+  
+  #Rh {
+    -ms-grid-row: 5;
+    -ms-grid-column: 9;
+    grid-area: Rh;
+  }
+  
+  #Pd {
+    -ms-grid-row: 5;
+    -ms-grid-column: 10;
+    grid-area: Pd;
+  }
+  
+  #Ag {
+    -ms-grid-row: 5;
+    -ms-grid-column: 11;
+    grid-area: Ag;
+  }
+  
+  #Cd {
+    -ms-grid-row: 5;
+    -ms-grid-column: 12;
+    grid-area: Cd;
+  }
+  
+  #In {
+    -ms-grid-row: 5;
+    -ms-grid-column: 13;
+    grid-area: In;
+  }
+  
+  #Sn {
+    -ms-grid-row: 5;
+    -ms-grid-column: 14;
+    grid-area: Sn;
+  }
+  
+  #Sb {
+    -ms-grid-row: 5;
+    -ms-grid-column: 15;
+    grid-area: Sb;
+  }
+  
+  #Te {
+    -ms-grid-row: 5;
+    -ms-grid-column: 16;
+    grid-area: Te;
+  }
+  
+  #I {
+    -ms-grid-row: 5;
+    -ms-grid-column: 17;
+    grid-area: I;
+  }
+  
+  #Xe {
+    -ms-grid-row: 5;
+    -ms-grid-column: 18;
+    grid-area: Xe;
+  }
+  
+  #Cs {
+    -ms-grid-row: 6;
+    -ms-grid-column: 1;
+    grid-area: Cs;
+  }
+  
+  #Ba {
+    -ms-grid-row: 6;
+    -ms-grid-column: 2;
+    grid-area: Ba;
+  }
+  
+  #La {
+    -ms-grid-row: 9;
+    -ms-grid-column: 3;
+    grid-area: La;
+  }
+  
+  #Ce {
+    -ms-grid-row: 9;
+    -ms-grid-column: 4;
+    grid-area: Ce;
+  }
+  
+  #Pr {
+    -ms-grid-row: 9;
+    -ms-grid-column: 5;
+    grid-area: Pr;
+  }
+  
+  #Nd {
+    -ms-grid-row: 9;
+    -ms-grid-column: 6;
+    grid-area: Nd;
+  }
+  
+  #Pm {
+    -ms-grid-row: 9;
+    -ms-grid-column: 7;
+    grid-area: Pm;
+  }
+  
+  #Sm {
+    -ms-grid-row: 9;
+    -ms-grid-column: 8;
+    grid-area: Sm;
+  }
+  
+  #Eu {
+    -ms-grid-row: 9;
+    -ms-grid-column: 9;
+    grid-area: Eu;
+  }
+  
+  #Gd {
+    -ms-grid-row: 9;
+    -ms-grid-column: 10;
+    grid-area: Gd;
+  }
+  
+  #Tb {
+    -ms-grid-row: 9;
+    -ms-grid-column: 11;
+    grid-area: Tb;
+  }
+  
+  #Dy {
+    -ms-grid-row: 9;
+    -ms-grid-column: 12;
+    grid-area: Dy;
+  }
+  
+  #Ho {
+    -ms-grid-row: 9;
+    -ms-grid-column: 13;
+    grid-area: Ho;
+  }
+  
+  #Er {
+    -ms-grid-row: 9;
+    -ms-grid-column: 14;
+    grid-area: Er;
+  }
+  
+  #Tm {
+    -ms-grid-row: 9;
+    -ms-grid-column: 15;
+    grid-area: Tm;
+  }
+  
+  #Yb {
+    -ms-grid-row: 9;
+    -ms-grid-column: 16;
+    grid-area: Yb;
+  }
+  
+  #Lu {
+    -ms-grid-row: 9;
+    -ms-grid-column: 17;
+    grid-area: Lu;
+  }
+  
+  #Hf {
+    -ms-grid-row: 6;
+    -ms-grid-column: 4;
+    grid-area: Hf;
+  }
+  
+  #Ta {
+    -ms-grid-row: 6;
+    -ms-grid-column: 5;
+    grid-area: Ta;
+  }
+  
+  #W {
+    -ms-grid-row: 6;
+    -ms-grid-column: 6;
+    grid-area: W;
+  }
+  
+  #Re {
+    -ms-grid-row: 6;
+    -ms-grid-column: 7;
+    grid-area: Re;
+  }
+  
+  #Os {
+    -ms-grid-row: 6;
+    -ms-grid-column: 8;
+    grid-area: Os;
+  }
+  
+  #Ir {
+    -ms-grid-row: 6;
+    -ms-grid-column: 9;
+    grid-area: Ir;
+  }
+  
+  #Pt {
+    -ms-grid-row: 6;
+    -ms-grid-column: 10;
+    grid-area: Pt;
+  }
+  
+  #Au {
+    -ms-grid-row: 6;
+    -ms-grid-column: 11;
+    grid-area: Au;
+  }
+  
+  #Hg {
+    -ms-grid-row: 6;
+    -ms-grid-column: 12;
+    grid-area: Hg;
+  }
+  
+  #Tl {
+    -ms-grid-row: 6;
+    -ms-grid-column: 13;
+    grid-area: Tl;
+  }
+  
+  #Pb {
+    -ms-grid-row: 6;
+    -ms-grid-column: 14;
+    grid-area: Pb;
+  }
+  
+  #Bi {
+    -ms-grid-row: 6;
+    -ms-grid-column: 15;
+    grid-area: Bi;
+  }
+  
+  #Po {
+    -ms-grid-row: 6;
+    -ms-grid-column: 16;
+    grid-area: Po;
+  }
+  
+  #At {
+    -ms-grid-row: 6;
+    -ms-grid-column: 17;
+    grid-area: At;
+  }
+  
+  #Rn {
+    -ms-grid-row: 6;
+    -ms-grid-column: 18;
+    grid-area: Rn;
+  }
+  
+  #Fr {
+    -ms-grid-row: 7;
+    -ms-grid-column: 1;
+    grid-area: Fr;
+  }
+  
+  #Ra {
+    -ms-grid-row: 7;
+    -ms-grid-column: 2;
+    grid-area: Ra;
+  }
+  
+  #Ac {
+    -ms-grid-row: 10;
+    -ms-grid-column: 3;
+    grid-area: Ac;
+  }
+  
+  #Th {
+    -ms-grid-row: 10;
+    -ms-grid-column: 4;
+    grid-area: Th;
+  }
+  
+  #Pa {
+    -ms-grid-row: 10;
+    -ms-grid-column: 5;
+    grid-area: Pa;
+  }
+  
+  #U {
+    -ms-grid-row: 10;
+    -ms-grid-column: 6;
+    grid-area: U;
+  }
+  
+  #Np {
+    -ms-grid-row: 10;
+    -ms-grid-column: 7;
+    grid-area: Np;
+  }
+  
+  #Pu {
+    -ms-grid-row: 10;
+    -ms-grid-column: 8;
+    grid-area: Pu;
+  }
+  
+  #Am {
+    -ms-grid-row: 10;
+    -ms-grid-column: 9;
+    grid-area: Am;
+  }
+  
+  #Cm {
+    -ms-grid-row: 10;
+    -ms-grid-column: 10;
+    grid-area: Cm;
+  }
+  
+  #Bk {
+    -ms-grid-row: 10;
+    -ms-grid-column: 11;
+    grid-area: Bk;
+  }
+  
+  #Cf {
+    -ms-grid-row: 10;
+    -ms-grid-column: 12;
+    grid-area: Cf;
+  }
+  
+  #Es {
+    -ms-grid-row: 10;
+    -ms-grid-column: 13;
+    grid-area: Es;
+  }
+  
+  #Fm {
+    -ms-grid-row: 10;
+    -ms-grid-column: 14;
+    grid-area: Fm;
+  }
+  
+  #Md {
+    -ms-grid-row: 10;
+    -ms-grid-column: 15;
+    grid-area: Md;
+  }
+  
+  #No {
+    -ms-grid-row: 10;
+    -ms-grid-column: 16;
+    grid-area: No;
+  }
+  
+  #Lr {
+    -ms-grid-row: 10;
+    -ms-grid-column: 17;
+    grid-area: Lr;
+  }
+  
+  #Rf {
+    -ms-grid-row: 7;
+    -ms-grid-column: 4;
+    grid-area: Rf;
+  }
+  
+  #Db {
+    -ms-grid-row: 7;
+    -ms-grid-column: 5;
+    grid-area: Db;
+  }
+  
+  #Sg {
+    -ms-grid-row: 7;
+    -ms-grid-column: 6;
+    grid-area: Sg;
+  }
+  
+  #Bh {
+    -ms-grid-row: 7;
+    -ms-grid-column: 7;
+    grid-area: Bh;
+  }
+  
+  #Hs {
+    -ms-grid-row: 7;
+    -ms-grid-column: 8;
+    grid-area: Hs;
+  }
+  
+  #Mt {
+    -ms-grid-row: 7;
+    -ms-grid-column: 9;
+    grid-area: Mt;
+  }
+  
+  #Ds {
+    -ms-grid-row: 7;
+    -ms-grid-column: 10;
+    grid-area: Ds;
+  }
+  
+  #Rg {
+    -ms-grid-row: 7;
+    -ms-grid-column: 11;
+    grid-area: Rg;
+  }
+  
+  #Cn {
+    -ms-grid-row: 7;
+    -ms-grid-column: 12;
+    grid-area: Cn;
+  }
+  
+  #Nh {
+    -ms-grid-row: 7;
+    -ms-grid-column: 13;
+    grid-area: Nh;
+  }
+  
+  #Fl {
+    -ms-grid-row: 7;
+    -ms-grid-column: 14;
+    grid-area: Fl;
+  }
+  
+  #Mc {
+    -ms-grid-row: 7;
+    -ms-grid-column: 15;
+    grid-area: Mc;
+  }
+  
+  #Lv {
+    -ms-grid-row: 7;
+    -ms-grid-column: 16;
+    grid-area: Lv;
+  }
+  
+#Ts {
+    -ms-grid-row: 7;
+    -ms-grid-column: 17;
+    grid-area: Ts;
+}
+  
+#Og {
+    -ms-grid-row: 7;
+    -ms-grid-column: 18;
+    grid-area: Og;
+}
+
+#Uue {
+    -ms-grid-row: 8;
+    -ms-grid-column: 1;
+    grid-area: Uue;
+}
+
+#Ubn {
+  -ms-grid-row: 8;
+  -ms-grid-column: 2;
+  grid-area: Ubn;
+}
